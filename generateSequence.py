@@ -3,9 +3,9 @@ path = '/Users/sbarnett/Documents/MATLAB/lineariseProtein/humantalin1-AF-Q9Y490-
 
 sequence = []
 
-aminos = {'MET':'M','VAL':'V','ALA':'A','LEU':'L','SER':'S','LYS':'K','ILE':'I','GLY':'G',
-          'ASN':'N','ASP':'D','CYS':'C','GLU':'E','GLN':'Q','HIS':'H','PHE':'F','PRO':'P',
-          'THR':'T','TRP':'W','TYR':'Y','ARG':'R'}
+aminos = {'MET': 'M', 'VAL': 'V', 'ALA': 'A', 'LEU': 'L', 'SER': 'S', 'LYS': 'K', 'ILE': 'I', 'GLY': 'G',
+          'ASN': 'N', 'ASP': 'D', 'CYS': 'C', 'GLU': 'E', 'GLN': 'Q', 'HIS': 'H', 'PHE': 'F', 'PRO': 'P',
+          'THR': 'T', 'TRP': 'W', 'TYR': 'Y', 'ARG': 'R'}
 
 with open(path) as inputpdb:
     data = inputpdb.readlines()

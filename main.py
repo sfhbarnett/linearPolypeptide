@@ -29,7 +29,7 @@ for count, line in enumerate(f):
             output.append(atom)
             counter += 1
         else:
-            pass#print(line.split())
+            pass
 
 outfilepath = '/Users/sbarnett/Documents/MATLAB/lineariseProtein/out2.pdb'
 with open(outfilepath, 'w') as outfile:
@@ -38,7 +38,7 @@ with open(outfilepath, 'w') as outfile:
             string = 'ATOM  '
             l = len(line[1])
             pad = 5-l
-            string += ' '* pad + line[1] + '  '
+            string += ' ' * pad + line[1] + '  '
             l = len(line[2])
             pad = 3-l
             string += line[2]+' ' * pad + ' ' + line[3] + ' A'
