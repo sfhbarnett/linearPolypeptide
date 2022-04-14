@@ -1,6 +1,27 @@
 import json
 import numpy as np
 
+def rotatez(coords):
+    theta = np.deg2rad(360 - np.rad2deg(np.arctan2(coords[2, 1], coords[2, 0])) + 180)
+    rotmatz = np.asarray([[np.cos(theta), -np.sin(theta), 0], [np.sin(theta), np.cos(theta), 0], [0, 0, 1]])
+    for idx, vector in enumerate(coords):
+        vector = vector[np.newaxis, :]
+        vector = vector.T
+        rotated: np.ndarray = (rotmatz @ vector).T
+        coords[idx][:] = rotated
+    return coords
+
+def rotatey(coords):
+    theta = np.arctan2(coords[2, 2], coords[2, 0]);
+    rotmaty = np.asarray([[np.cos(theta), 0, np.sin(theta)],[0, 1, 0],[-np.sin(theta), 0, np.cos(theta)]])
+    for idx, vector in enumerate(coords):
+        vector = vector[np.newaxis, :]
+        vector = vector.T
+        rotated: np.ndarray = (rotmaty @ vector).T
+        coords[idx][:] = rotated
+    return coords
+
+
 with open("aminos.json", 'r') as j:
     test = json.loads(j.read())
 
@@ -44,5 +65,8 @@ trp = trp-trp[0][:]
 tyr = tyr-tyr[0][:]
 val = val-val[0][:]
 
-
 print(ala)
+print(rotatey(rotatez(ala)))
+
+
+
