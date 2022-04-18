@@ -1,5 +1,13 @@
 
-f = open('/Users/sbarnett/Documents/MATLAB/lineariseProtein/humantalin1-AF-Q9Y490-F1-model_v2.pdb').readlines()
+from generateSequence import generateSequence
+from processAminos import processAminos
+
+path = '/Users/sbarnett/Documents/MATLAB/lineariseProtein/humantalin1-AF-Q9Y490-F1-model_v2.pdb'
+
+sequence = generateSequence(path)
+aminos = processAminos()
+
+f = open(path).readlines()
 
 inputdata = open('/Users/sbarnett/Documents/MATLAB/lineariseProtein/test3.csv').readlines()
 d = []
