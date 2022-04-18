@@ -25,6 +25,8 @@ def rotatey(coords):
 with open("aminos.json", 'r') as j:
     test = json.loads(j.read())
 
+# Read in aminos coordinates from json file
+
 ala = np.reshape(np.asarray(test["ALA"]), [len(test["ALA"])//3, 3])
 arg = np.reshape(np.asarray(test["ARG"]), [len(test["ARG"])//3, 3])
 asn = np.reshape(np.asarray(test["ASN"]), [len(test["ASN"])//3, 3])
@@ -45,28 +47,31 @@ trp = np.reshape(np.asarray(test["TRP"]), [len(test["TRP"])//3, 3])
 tyr = np.reshape(np.asarray(test["TYR"]), [len(test["TYR"])//3, 3])
 val = np.reshape(np.asarray(test["VAL"]), [len(test["VAL"])//3, 3])
 
-ala = ala-ala[0][:]
-arg = arg-arg[0][:]
-asn = asn-asn[0][:]
-asp = asp-asp[0][:]
-cys = cys-ala[0][:]
-gln = gln-gln[0][:]
-glu = glu-glu[0][:]
-gly = gly-ala[0][:]
-his = his-his[0][:]
-ile = ile-ile[0][:]
-lys = lys-lys[0][:]
-met = met-met[0][:]
-phe = phe-phe[0][:]
-pro = pro-pro[0][:]
-ser = ser-ser[0][:]
-thr = thr-thr[0][:]
-trp = trp-trp[0][:]
-tyr = tyr-tyr[0][:]
-val = val-val[0][:]
+# Process amino acid coordinates
+# First translate aminos to 0,0. Then rotate in y and z so they are aligned on the same axis.
+
+ala = rotatey(rotatez(ala-ala[0][:]))
+arg = rotatey(rotatez(arg-arg[0][:]))
+asn = rotatey(rotatez(asn-asn[0][:]))
+asp = rotatey(rotatez(asp-asp[0][:]))
+cys = rotatey(rotatez(cys-ala[0][:]))
+gln = rotatey(rotatez(gln-gln[0][:]))
+glu = rotatey(rotatez(glu-glu[0][:]))
+gly = rotatey(rotatez(gly-ala[0][:]))
+his = rotatey(rotatez(his-his[0][:]))
+ile = rotatey(rotatez(ile-ile[0][:]))
+lys = rotatey(rotatez(lys-lys[0][:]))
+met = rotatey(rotatez(met-met[0][:]))
+phe = rotatey(rotatez(phe-phe[0][:]))
+pro = rotatey(rotatez(pro-pro[0][:]))
+ser = rotatey(rotatez(ser-ser[0][:]))
+thr = rotatey(rotatez(thr-thr[0][:]))
+trp = rotatey(rotatez(trp-trp[0][:]))
+tyr = rotatey(rotatez(tyr-tyr[0][:]))
+val = rotatey(rotatez(val-val[0][:]))
 
 print(ala)
-print(rotatey(rotatez(ala)))
+
 
 
 
