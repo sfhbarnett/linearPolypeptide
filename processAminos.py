@@ -66,10 +66,10 @@ def processAminos():
     arg = rotatex(rotatey(rotatez(arg-arg[0][:])))
     asn = rotatex(rotatey(rotatez(asn-asn[0][:])))
     asp = rotatex(rotatey(rotatez(asp-asp[0][:])))
-    cys = rotatex(rotatey(rotatez(cys-ala[0][:])))
+    cys = rotatex(rotatey(rotatez(cys-cys[0][:])))
     gln = rotatex(rotatey(rotatez(gln-gln[0][:])))
     glu = rotatex(rotatey(rotatez(glu-glu[0][:])))
-    gly = rotatex(rotatey(rotatez(gly-ala[0][:])))
+    gly = rotatex(rotatey(rotatez(gly-gly[0][:])))
     his = rotatex(rotatey(rotatez(his-his[0][:])))
     ile = rotatex(rotatey(rotatez(ile-ile[0][:])))
     lys = rotatex(rotatey(rotatez(lys-lys[0][:])))
@@ -91,5 +91,7 @@ def processAminos():
 
 if __name__ == "__main__":
     aminos = processAminos()
+    print(aminos["L"])
+
 
 

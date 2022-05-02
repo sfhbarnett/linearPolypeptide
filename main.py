@@ -4,8 +4,8 @@ from processAminos import processAminos
 
 path = '/Users/sbarnett/Documents/MATLAB/lineariseProtein/humantalin1-AF-Q9Y490-F1-model_v2.pdb'
 
-sequence = generateSequence(path)
-aminos = processAminos()
+sequence = generateSequence(path) # get primary sequence from PDB
+aminos = processAminos() # Load in amino JSON and correct the position/rotation
 
 f = open(path).readlines()
 
