@@ -12,12 +12,22 @@ def rotatez(coords):
     return coords
 
 def rotatey(coords):
-    theta = np.arctan2(coords[2, 2], coords[2, 0]);
+    theta = np.arctan2(coords[2, 2], coords[2, 0])
     rotmaty = np.asarray([[np.cos(theta), 0, np.sin(theta)],[0, 1, 0],[-np.sin(theta), 0, np.cos(theta)]])
     for idx, vector in enumerate(coords):
         vector = vector[np.newaxis, :]
         vector = vector.T
         rotated: np.ndarray = (rotmaty @ vector).T
+        coords[idx][:] = rotated
+    return coords
+
+def rotatex(coords):
+    theta = np.deg2rad((360 - (np.rad2deg(np.arctan2(coords[1, 2], coords[1, 1])) + 180)) + 90)
+    rotmatx = np.asarray([[1, 0, 0],[0, np.cos(theta), -np.sin(theta)],[0, np.sin(theta), np.cos(theta)]])
+    for idx, vector in enumerate(coords):
+        vector = vector[np.newaxis, :]
+        vector = vector.T
+        rotated: np.ndarray = (rotmatx @ vector).T
         coords[idx][:] = rotated
     return coords
 
@@ -46,34 +56,40 @@ def processAminos():
     trp = np.reshape(np.asarray(test["TRP"]), [len(test["TRP"])//3, 3])
     tyr = np.reshape(np.asarray(test["TYR"]), [len(test["TYR"])//3, 3])
     val = np.reshape(np.asarray(test["VAL"]), [len(test["VAL"])//3, 3])
+    leu = np.reshape(np.asarray(test["LEU"]), [len(test["LEU"])//3, 3])
+
 
     # Process amino acid coordinates
     # First translate aminos to 0,0. Then rotate in y and z so they are aligned on the same axis.
 
-    ala = rotatey(rotatez(ala-ala[0][:]))
-    arg = rotatey(rotatez(arg-arg[0][:]))
-    asn = rotatey(rotatez(asn-asn[0][:]))
-    asp = rotatey(rotatez(asp-asp[0][:]))
-    cys = rotatey(rotatez(cys-ala[0][:]))
-    gln = rotatey(rotatez(gln-gln[0][:]))
-    glu = rotatey(rotatez(glu-glu[0][:]))
-    gly = rotatey(rotatez(gly-ala[0][:]))
-    his = rotatey(rotatez(his-his[0][:]))
-    ile = rotatey(rotatez(ile-ile[0][:]))
-    lys = rotatey(rotatez(lys-lys[0][:]))
-    met = rotatey(rotatez(met-met[0][:]))
-    phe = rotatey(rotatez(phe-phe[0][:]))
-    pro = rotatey(rotatez(pro-pro[0][:]))
-    ser = rotatey(rotatez(ser-ser[0][:]))
-    thr = rotatey(rotatez(thr-thr[0][:]))
-    trp = rotatey(rotatez(trp-trp[0][:]))
-    tyr = rotatey(rotatez(tyr-tyr[0][:]))
-    val = rotatey(rotatez(val-val[0][:]))
+    ala = rotatex(rotatey(rotatez(ala-ala[0][:])))
+    arg = rotatex(rotatey(rotatez(arg-arg[0][:])))
+    asn = rotatex(rotatey(rotatez(asn-asn[0][:])))
+    asp = rotatex(rotatey(rotatez(asp-asp[0][:])))
+    cys = rotatex(rotatey(rotatez(cys-ala[0][:])))
+    gln = rotatex(rotatey(rotatez(gln-gln[0][:])))
+    glu = rotatex(rotatey(rotatez(glu-glu[0][:])))
+    gly = rotatex(rotatey(rotatez(gly-ala[0][:])))
+    his = rotatex(rotatey(rotatez(his-his[0][:])))
+    ile = rotatex(rotatey(rotatez(ile-ile[0][:])))
+    lys = rotatex(rotatey(rotatez(lys-lys[0][:])))
+    met = rotatex(rotatey(rotatez(met-met[0][:])))
+    phe = rotatex(rotatey(rotatez(phe-phe[0][:])))
+    pro = rotatex(rotatey(rotatez(pro-pro[0][:])))
+    ser = rotatex(rotatey(rotatez(ser-ser[0][:])))
+    thr = rotatex(rotatey(rotatez(thr-thr[0][:])))
+    trp = rotatex(rotatey(rotatez(trp-trp[0][:])))
+    tyr = rotatex(rotatey(rotatez(tyr-tyr[0][:])))
+    val = rotatex(rotatey(rotatez(val-val[0][:])))
+    leu = rotatex(rotatey(rotatez(leu-leu[0][:])))
 
     aminos = {'A': ala, 'R': arg, 'N': asn, 'D': asp, 'C': cys, 'Q': gln, 'E': glu, 'G': gly,'H': his,'I': ile, 'K': lys, 'M': met, 'F': phe, 'P': pro,
-        'S': ser, 'T': thr, 'W': trp, 'Y': tyr, 'V': val}
+        'S': ser, 'T': thr, 'W': trp, 'Y': tyr, 'V': val, 'L': leu}
 
     return aminos
 
+
+if __name__ == "__main__":
+    aminos = processAminos()
 
 
