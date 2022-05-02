@@ -1,7 +1,5 @@
 
 
-
-
 def generateSequence(path):
     sequence = []
 
@@ -19,7 +17,7 @@ def generateSequence(path):
     print("".join(s for s in sequence))
     return sequence
 
-if __name__() == '__main__':
+if __name__ == '__main__':
     path = '/Users/sbarnett/Documents/MATLAB/lineariseProtein/humantalin1-AF-Q9Y490-F1-model_v2.pdb'
     sequence = generateSequence(path)
 

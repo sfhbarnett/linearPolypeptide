@@ -1,19 +1,22 @@
 
 from generateSequence import generateSequence
 from processAminos import processAminos
+from generatePeptide import generatePeptide
 
 path = '/Users/sbarnett/Documents/MATLAB/lineariseProtein/humantalin1-AF-Q9Y490-F1-model_v2.pdb'
 
 sequence = generateSequence(path) # get primary sequence from PDB
 aminos = processAminos() # Load in amino JSON and correct the position/rotation
+d = generatePeptide(sequence, aminos) # Create linear form of protein
 
 f = open(path).readlines()
 
-inputdata = open('/Users/sbarnett/Documents/MATLAB/lineariseProtein/test3.csv').readlines()
-d = []
-for line in inputdata:
-    line = line.strip('\n').split(',')
-    d.append(line)
+# inputdata = open('/Users/sbarnett/Documents/MATLAB/lineariseProtein/test3.csv').readlines()
+# d = []
+# for line in inputdata:
+#     line = line.strip('\n').split(',')
+#     d.append(line)
+
 
 output = []
 counter = 0
